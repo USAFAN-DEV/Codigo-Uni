@@ -199,8 +199,13 @@ class Model:
         """
         Elimina el modelo de la base de datos
         """
-        #TODO
-        pass
+        
+        #Comprobamos que la conexion a la db existe
+        if self.db is None:
+            raise ValueError("ERROR: No hay conexión a la base de datos.")
+        
+        self.db.drop()
+
     
     @classmethod
     def find(cls, filter: dict[str, str | dict]) -> Any:
