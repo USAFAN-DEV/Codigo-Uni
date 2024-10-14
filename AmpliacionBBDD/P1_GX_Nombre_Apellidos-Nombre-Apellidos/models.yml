@@ -17,6 +17,7 @@ Model:
     admissible_vars:
       - fecha_de_alta
       - fecha_de_ultimo_acceso
+      - _id
 
   Producto:
     required_vars:
@@ -31,6 +32,7 @@ Model:
       - peso
       - proveedores
       - almacenes
+      - _id
       #otros atributos especificos?
 
   Compra:
@@ -41,14 +43,16 @@ Model:
       - fecha_compra
       - direccion_envio
       - direccion_envio_GeoJson
-    admissible_vars: []
+    admissible_vars: 
+      - _id
 
   Proveedor:
     required_vars:
       - nombre
       - direcciones_almacenes
       - direcciones_almacenes_GeoJson
-    admissible_vars: []
+    admissible_vars: 
+      - _id
 
 settings:
   enforce_required: true  # Si es true, se debe cumplir que los atributos obligatorios estén presentes en cada documento

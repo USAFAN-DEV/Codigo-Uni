@@ -12,6 +12,7 @@ from pymongo.collection import Collection
 from pymongo.command_cursor import CommandCursor
 import yaml
 import json
+from datetime import datetime
 
 
 def get_geojson_point(latitud: int, longitud: int):
@@ -55,15 +56,23 @@ def getLocationPoint(address: str) -> Point:
             coordenadas del punto de la direccion
     """
     location = None
+
     while location is None:
+
         try:
-            time.sleep(1)
             #Se puede utilizar un nombre aleatorio para user_agent
-            location = Nominatim(user_agent="Gravyy").geocode(address)
-            return get_geojson_point(location.latitud, location.longitude)
+            location = Nominatim(user_agent="Gravyy", timeout = 10).geocode(address)
+
+            if location:
+
+                return get_geojson_point(location.latitude, location.longitude)
+            else:
+                print(f"ERROR. No se encontro la direccion {address}")
+                return None
         
-        except GeocoderTimedOut:
+        except GeocoderTimedOut as e:
             #Volvemos a intentarlo
+            print(e)
             continue
 
     
@@ -127,13 +136,13 @@ class Model:
             
             if var not in kwargs:
 
-                raise ValueError ("ERROR. La variable '{var}' es una variable obligatoria. Intente crear el objeto de nuevo.")
+                raise ValueError (f"ERROR. La variable '{var}' es una variable obligatoria. Intente crear el objeto de nuevo.")
             
         for var in kwargs: #Comprobamos si las variables introducidas corresponden con las variables del modelo
 
             if not self.validate_vars(var):
                 
-                raise ValueError ("ERROR. La variable '{var}' no corresponde con este modelo. Intente crear el objeto de nuevo.")
+                raise ValueError (f"ERROR. La variable '{var}' no corresponde con este modelo. Intente crear el objeto de nuevo.")
             
         self.__dict__.update(kwargs)  #Actualiza los valores de los atributos de la clase con los valores guardados en kwargs
 
@@ -223,10 +232,10 @@ class Model:
             ModelCursor
                 cursor de modelos
         """ 
-        #TODO
-        # cls es el puntero a la clase
-        pass #No olvidar eliminar esta linea una vez implementado
 
+        cursor = cls.db.find(filter)
+        return ModelCursor(cls, cursor)
+    
     @classmethod
     def aggregate(cls, pipeline: list[dict]) -> CommandCursor:
         """ 
@@ -328,8 +337,16 @@ class ModelCursor:
         Utilizar la funcion next para obtener el siguiente documento del cursor
         Utilizar alive para comprobar si existen mas documentos.
         """
-        #TODO
-        pass #No olvidar eliminar esta linea una vez implementado
+        while self.cursor.alive:
+
+            doc = next(self.cursor)
+            if doc:
+
+                yield self.model(**doc)
+
+            else:
+
+                break
 
 
 def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://localhost:27017/", db_name="abd") -> None:
@@ -412,36 +429,50 @@ Q3 = []
 if __name__ == '__main__':
     
     # Inicializar base de datos y modelos con initApp
-    #TODO
     initApp()
 
-    #Ejemplo
+    """
+    Ejemplo
     m = Model(nombre="Pablo", apellido="Ramos", edad=18)
     m.save()
     m.nombre="Pedro"
     print(m.nombre)
+    """
 
     # Hacer pruebas para comprobar que funciona correctamente el modelo
-    #TODO
-    # Crear modelo
 
+    # Crear modelo
+    cliente = Cliente(nombre = "Nicolas", direccion_de_facturacion = "175 5th Avenue NYC", direccion_de_facturacion_GeoJson = getLocationPoint("175 5th Avenue NYC"), direccion_de_envio = "11111 Euclid Ave", direccion_de_envio_GeoJson = getLocationPoint("11111 Euclid Ave"), tarjeta_de_pago = 12345678)
     # Asignar nuevo valor a variable admitida del objeto 
+    setattr(cliente, "fecha_de_alta", datetime(2024, 10, 14, 16, 14, 0, 0))
 
     # Asignar nuevo valor a variable no admitida del objeto 
+    try:
+        setattr(cliente, "fecha_inventada", datetime(2024, 10, 14, 16, 14, 0, 0))
+    except ValueError as e:
+        print(e)
 
     # Guardar
+    cliente.save()
 
     # Asignar nuevo valor a variable admitida del objeto
+    setattr(cliente, "fecha_de_ultimo_acceso", datetime(2024, 10, 12, 10, 0, 0, 0))
 
     # Guardar
+    cliente.save()
 
     # Buscar nuevo documento con find
+    doc_cursor = cliente.find({}).__iter__()
 
     # Obtener primer documento
-
+    for doc in doc_cursor:
+        print(doc)
+        
     # Modificar valor de variable admitida
+    fecha_de_ultimo_acceso = datetime.now()
 
     # Guardar
+    cliente.save()
 
     # PROYECTO 2
     # Ejecutar consultas Q1, Q2, etc. y mostrarlo

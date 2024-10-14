@@ -7,8 +7,19 @@ import pymongo
 import yaml
 import json
 
-"""
 def get_geojson_point(latitud: int, longitud: int):
+    """
+    Obtiene un GeoJSON de tipo punto con la latitud y longitud almacenados
+
+    Parameters
+    ----------
+        latitud: int
+        longitud: int
+    Returns
+    -------
+        json formatted string
+            Contiene la informacion del punto (longitud y latitud)
+    """
 
     geojson_point = {
         "type": "Feature",
@@ -22,78 +33,38 @@ def get_geojson_point(latitud: int, longitud: int):
     return json.dumps(geojson_point, indent=2)
 
 def getLocationPoint(address: str) -> Point:
-
-    location = None
-    while location is None:
-        try:
-            time.sleep(1)
-            #TODO
-            # Es necesario proporcionar un user_agent para utilizar la API
-            # Utilizar un nombre aleatorio para el user_agent
-            location = Nominatim(user_agent="Gravyy").geocode(address)
-            return get_geojson_point(location.latitude, location.longitude)
-        
-        except GeocoderTimedOut:
-            # Puede lanzar una excepcion si se supera el tiempo de espera
-            # Volver a intentarlo
-            continue
-
-
-with open("./models.yml", "r") as file:
-    config = yaml.safe_load(file)
-
-model_names = list(config["Model"].keys())
-print(model_names)
-"""
-
-def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://localhost:27017/", db_name="abd") -> None:
     """ 
-    Declara las clases que heredan de Model para cada uno de los 
-    modelos de las colecciones definidas en definitions_path.
-    Inicializa las clases de los modelos proporcionando las variables 
-    admitidas y requeridas para cada una de ellas y la conexión a la
-    collecion de la base de datos.
-    
+    Obtiene las coordenadas de una dirección en formato geojson.Point
+    Utilizar la API de geopy para obtener las coordenadas de la direccion
+    Cuidado, la API es publica tiene limite de peticiones, utilizar sleeps.
+
     Parameters
     ----------
-        definitions_path : str
-            ruta al fichero de definiciones de modelos
-        mongodb_uri : str
-            uri de conexion a la base de datos
-        db_name : str
-            nombre de la base de datos
+        address : str
+            direccion completa de la que obtener las coordenadas
+    Returns
+    -------
+        geojson.Point
+            coordenadas del punto de la direccion
     """
+    location = None
 
-    # Inicializar base de datos
-    try:
+    while location is None:
 
-        client = pymongo.MongoClient(mongodb_uri)
+        try:
+            #Se puede utilizar un nombre aleatorio para user_agent
+            location = Nominatim(user_agent="Gravyy", timeout = 10).geocode(address)
 
-    except Exception:
+            if location:
 
-        print("ERROR. " + Exception)
+                return get_geojson_point(location.latitude, location.longitude)
+            else:
+                print(f"ERROR. No se encontro la direccion {address}")
+                return None
+        
+        except GeocoderTimedOut as e:
+            #Volvemos a intentarlo
+            print(e)
+            continue
 
-    database = client[db_name] #Todavia no se crea la base de datos. Solo accede a ella. Se crea cuando se realize una operacion en ella
-                               #Si la base de datos ya ha sido creada, mongo la devuelve, y no crea otra nueva.
-
-    if db_name not in client.list_database_names():
-
-        raise ValueError(f"ERROR: La base de datos '{db_name}' no existe.")
-
-    # Declarar tantas clases modelo colecciones existan en la base de datos
-    # Leer el fichero de definiciones de modelos para obtener las colecciones
-    # y las variables admitidas y requeridas para cada una de ellas.
-    # Ejemplo de declaracion de modelo para colecion llamada MiModelo
-
-    with open("./models.yml", "r") as file:
-
-        config = yaml.safe_load(file)
-
-    model_names = list(config["Model"].keys())
-
-    for model_name in model_names:
-
-        globals()[model_name] = type(model_name, (Model,), {})
-        globals()[model_name].init_class(database[model_name], config["Model"][model_name]["required_vars"], config["Model"][model_name]["admissible_vars"])
-
-initApp()
+print(getLocationPoint("11111 Euclid Ave"))
