@@ -442,7 +442,7 @@ if __name__ == '__main__':
     # Hacer pruebas para comprobar que funciona correctamente el modelo
 
     # Crear modelo
-    cliente = Cliente(nombre = "Nicolas", direccion_de_facturacion = "175 5th Avenue NYC", direccion_de_facturacion_GeoJson = getLocationPoint("175 5th Avenue NYC"), direccion_de_envio = "11111 Euclid Ave", direccion_de_envio_GeoJson = getLocationPoint("11111 Euclid Ave"), tarjeta_de_pago = 12345678)
+    cliente = Cliente(nombre = "Nicolas", direccion_de_facturacion = "175 5th Avenue NYC", direccion_de_facturacion_GeoJson = getLocationPoint("175 5th Avenue NYC"), direccion_de_envio = "11111 Euclid Ave", direccion_de_envio_GeoJson = getLocationPoint("11111 Euclid Ave"), tarjeta_de_pago = 12345678) # type: ignore
     # Asignar nuevo valor a variable admitida del objeto 
     setattr(cliente, "fecha_de_alta", datetime(2024, 10, 14, 16, 14, 0, 0))
 
