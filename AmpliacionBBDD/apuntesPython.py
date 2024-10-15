@@ -66,3 +66,6 @@ Parámetros Comunes
 NO CONFUNDIR CON json.dump()
 
 """
+
+#TODO 
+    - YIELD
