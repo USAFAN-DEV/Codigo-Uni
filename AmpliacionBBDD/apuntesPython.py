@@ -66,3 +66,8 @@ Parámetros Comunes
 NO CONFUNDIR CON json.dump()
 
 """
+
+#TODO 
+    - YIELD
+    - globals()[model_name] = type(model_name, (Model,), {})
+
