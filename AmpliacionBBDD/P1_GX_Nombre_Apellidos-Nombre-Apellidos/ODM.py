@@ -15,14 +15,18 @@ import json
 from datetime import datetime
 
 
-def get_geojson_point(latitud: int, longitud: int):
+def get_geojson_point(latitud: int, longitud: int, address:str):
     """
     Obtiene un GeoJSON de tipo punto con la latitud y longitud almacenados
 
     Parameters
     ----------
         latitud: int
+            Latitud del punto
         longitud: int
+            Longitud del punto
+        address: str
+            Direccion asociada al punto
     Returns
     -------
         json formatted string
@@ -31,6 +35,7 @@ def get_geojson_point(latitud: int, longitud: int):
 
     geojson_point = {
         "type": "Feature",
+        "adress" : address,
         "geometry": {
             "type": "Point",
             "coordinates": [longitud, latitud]
@@ -65,9 +70,9 @@ def getLocationPoint(address: str) -> Point:
 
             if location:
 
-                return get_geojson_point(location.latitude, location.longitude)
+                return get_geojson_point(location.latitude, location.longitude, address)
             else:
-                print(f"ERROR. No se encontro la direccion {address}")
+                print(f"ERROR. No se encontraron las cordenadas de {address}")
                 return None
         
         except GeocoderTimedOut as e:
@@ -171,7 +176,7 @@ class Model:
         #Comprobamos que la variable que se quiere añadir o actualizar se permite en el modelo
         if not self.validate_vars(name):
 
-            raise ValueError ("ERROR. Estas intentando asignar un valor a un atributo que no existe en este modelo")
+            raise ValueError (f"ERROR. Estas intentando asignar un valor al atributo {name} que no existe en este modelo")
 
         # Asigna el valor value a la variable name
         self.__dict__[name] = value
@@ -185,12 +190,11 @@ class Model:
         modelo.
         """
 
+        #TODO
+
         #Comprobamos que la conexion a la db existe
         if self.db is None:
             raise ValueError("ERROR: No hay conexión a la base de datos.")
-
-        # Convertir el objeto a un diccionario para guardar
-        #data = {var: self.__dict__[var] for var in self.admissible_vars.union(self.required_vars) if var in self.__dict__}
 
         data = {}
 
@@ -199,10 +203,15 @@ class Model:
             if var in self.__dict__:
 
                 data[var] = self.__dict__[var]
-        
-        # Insertar el documento
-        result = self.db.insert_one(data)
-        #print(f"Documento insertado con ID: {result.inserted_id}")
+
+        if "_id" in self.__dict__:
+
+            result = self.db.update_one({"_id": self.__dict__["_id"]}, {"$set": data})
+
+        else:
+
+            result = self.db.insert_one(data)
+            self.__dict__["_id"] = result.inserted_id
 
     def delete(self) -> None:
         """
@@ -214,7 +223,6 @@ class Model:
             raise ValueError("ERROR: No hay conexión a la base de datos.")
         
         self.db.drop()
-
     
     @classmethod
     def find(cls, filter: dict[str, str | dict]) -> Any:
@@ -340,13 +348,8 @@ class ModelCursor:
         while self.cursor.alive:
 
             doc = next(self.cursor)
-            if doc:
+            yield self.model(**doc)
 
-                yield self.model(**doc)
-
-            else:
-
-                break
 
 
 def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://localhost:27017/", db_name="abd") -> None:
@@ -378,10 +381,6 @@ def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://local
 
     database = client[db_name] #Todavia no se crea la base de datos. Solo accede a ella. Se crea cuando se realize una operacion en ella
                                #Si la base de datos ya ha sido creada, mongo la devuelve, y no crea otra nueva.
-
-    if db_name not in client.list_database_names():
-
-        raise ValueError(f"ERROR: La base de datos '{db_name}' no existe.")
 
     # Declarar tantas clases modelo colecciones existan en la base de datos
     # Leer el fichero de definiciones de modelos para obtener las colecciones
@@ -431,48 +430,29 @@ if __name__ == '__main__':
     # Inicializar base de datos y modelos con initApp
     initApp()
 
-    """
-    Ejemplo
-    m = Model(nombre="Pablo", apellido="Ramos", edad=18)
-    m.save()
-    m.nombre="Pedro"
-    print(m.nombre)
-    """
+    # Creamos los modelos
+    addresses = ["1600 Amphitheatre Parkway, Mountain View, CA, USA", "1 Infinite Loop, Cupertino, CA, USA", "350 Fifth Avenue, New York, NY, USA", "5th Avenue, New York, NY, USA",
+    "350 10th Ave, New York, NY, USA", "101 N. Wacker Dr, Chicago, IL, USA", "6000 S Las Vegas Blvd, Las Vegas, NV, USA", "30 Rockefeller Plaza, New York, NY, USA",
+    "12 S 12th St, Philadelphia, PA, USA", "1 Disneyland Dr, Anaheim, CA, USA"]
+    nombres = ["Nicolas", "Alice", "Bob", "Sofia", "Liam", "Emma", "Oliver", "Mia", "Ethan", "Ava"]
+    numeros = [12345678, 87654321, 23456789, 98765432, 34567890, 45678901, 56789012, 67890123, 78901234, 89012345]
+    productos = ["Laptop", "Smartphone", "Auriculares Bluetooth", "Televisor 4K", "Reloj inteligente", "Cámara DSLR", "Tablet", "Altavoz inteligente", "Monitor LED", "Impresora multifuncional"]
+    precios = [199.99, 899.99, 129.49, 499.99, 249.00, 349.99, 199.99, 79.99, 599.99, 49.99]
+    proveedores = ["Tech Solutions", "Innovative Electronics", "Gadgets R Us", "Smart Home Supplies", "Digital World", "ElectroMart", "Future Gadgets", "Premium Devices", "Global Tech Supply", "NextGen Innovations"]
 
-    # Hacer pruebas para comprobar que funciona correctamente el modelo
+    clientes = []
+    productos = []
+    compras = []
+    proveedores = []
 
-    # Crear modelo
-    cliente = Cliente(nombre = "Nicolas", direccion_de_facturacion = "175 5th Avenue NYC", direccion_de_facturacion_GeoJson = getLocationPoint("175 5th Avenue NYC"), direccion_de_envio = "11111 Euclid Ave", direccion_de_envio_GeoJson = getLocationPoint("11111 Euclid Ave"), tarjeta_de_pago = 12345678) # type: ignore
-    # Asignar nuevo valor a variable admitida del objeto 
-    setattr(cliente, "fecha_de_alta", datetime(2024, 10, 14, 16, 14, 0, 0))
+    for i in range(0,10):
+        clientes.append(Cliente(nombre = nombres[i], direccion_de_facturacion = getLocationPoint(addresses[i]), direccion_de_envio = getLocationPoint(addresses[i]), tarjeta_de_pago = numeros[i]))
+        productos.append(Producto(nombre = productos[i], codigo_del_producto = numeros[i], precio_con_iva = precios[i]))
+        compras.append(Compra(cliente = nombres[i], precio_compra = precios[i], direccion_envio = getLocationPoint(addresses[i])))
+        proveedores.append(Proveedor(nombre = proveedores[i], direccion_almacenes = getLocationPoint(addresses[i])))
 
-    # Asignar nuevo valor a variable no admitida del objeto 
-    try:
-        setattr(cliente, "fecha_inventada", datetime(2024, 10, 14, 16, 14, 0, 0))
-    except ValueError as e:
-        print(e)
+    #mongoexport --uri "mongodb://localhost:27017/mi_base_de_datos" --collection usuarios --out usuarios.json
 
-    # Guardar
-    cliente.save()
-
-    # Asignar nuevo valor a variable admitida del objeto
-    setattr(cliente, "fecha_de_ultimo_acceso", datetime(2024, 10, 12, 10, 0, 0, 0))
-
-    # Guardar
-    cliente.save()
-
-    # Buscar nuevo documento con find
-    doc_cursor = cliente.find({}).__iter__()
-
-    # Obtener primer documento
-    for doc in doc_cursor:
-        print(doc)
-        
-    # Modificar valor de variable admitida
-    fecha_de_ultimo_acceso = datetime.now()
-
-    # Guardar
-    cliente.save()
 
     # PROYECTO 2
     # Ejecutar consultas Q1, Q2, etc. y mostrarlo

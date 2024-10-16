@@ -10,49 +10,42 @@ Model:
     required_vars:
       - nombre
       - direccion_de_facturacion
-      - direccion_de_facturacion_GeoJson
       - direccion_de_envio
-      - direccion_de_envio_GeoJson
       - tarjeta_de_pago
     admissible_vars:
       - fecha_de_alta
       - fecha_de_ultimo_acceso
-      - _id
 
   Producto:
     required_vars:
       - nombre
       - codigo_del_producto
-      - precio_sin_iva
       - precio_con_iva
-      - coste_envio
     admissible_vars:
+      - precio_sin_iva
       - descuento_rango_fechas
       - dimensiones
       - peso
       - proveedores
       - almacenes
-      - _id
+      - coste_envio
       #otros atributos especificos?
 
   Compra:
     required_vars:
-      - productos
       - cliente
       - precio_compra
-      - fecha_compra
       - direccion_envio
-      - direccion_envio_GeoJson
     admissible_vars: 
-      - _id
+      - fecha_compra
+      - productos
+
 
   Proveedor:
     required_vars:
       - nombre
-      - direcciones_almacenes
-      - direcciones_almacenes_GeoJson
-    admissible_vars: 
-      - _id
+      - direccion_almacenes
+    admissible_vars: []
 
 settings:
   enforce_required: true  # Si es true, se debe cumplir que los atributos obligatorios estén presentes en cada documento
