@@ -15,36 +15,6 @@ import json
 from datetime import datetime
 
 
-def get_geojson_point(latitud: int, longitud: int, address:str):
-    """
-    Obtiene un GeoJSON de tipo punto con la latitud y longitud almacenados
-
-    Parameters
-    ----------
-        latitud: int
-            Latitud del punto
-        longitud: int
-            Longitud del punto
-        address: str
-            Direccion asociada al punto
-    Returns
-    -------
-        json formatted string
-            Contiene la informacion del punto (longitud y latitud)
-    """
-
-    geojson_point = {
-        "type": "Feature",
-        "adress" : address,
-        "geometry": {
-            "type": "Point",
-            "coordinates": [longitud, latitud]
-        },
-        "properties":{}
-    }
-
-    return json.dumps(geojson_point, indent=2)
-
 def getLocationPoint(address: str) -> Point:
     """ 
     Obtiene las coordenadas de una dirección en formato geojson.Point
@@ -70,7 +40,7 @@ def getLocationPoint(address: str) -> Point:
 
             if location:
 
-                return get_geojson_point(location.latitude, location.longitude, address)
+                return Point((location.longitude, location.latitude))
             else:
                 print(f"ERROR. No se encontraron las cordenadas de {address}")
                 return None
@@ -436,20 +406,26 @@ if __name__ == '__main__':
     "12 S 12th St, Philadelphia, PA, USA", "1 Disneyland Dr, Anaheim, CA, USA"]
     nombres = ["Nicolas", "Alice", "Bob", "Sofia", "Liam", "Emma", "Oliver", "Mia", "Ethan", "Ava"]
     numeros = [12345678, 87654321, 23456789, 98765432, 34567890, 45678901, 56789012, 67890123, 78901234, 89012345]
-    productos = ["Laptop", "Smartphone", "Auriculares Bluetooth", "Televisor 4K", "Reloj inteligente", "Cámara DSLR", "Tablet", "Altavoz inteligente", "Monitor LED", "Impresora multifuncional"]
+    nombre_productos = ["Laptop", "Smartphone", "Auriculares Bluetooth", "Televisor 4K", "Reloj inteligente", "Cámara DSLR", "Tablet", "Altavoz inteligente", "Monitor LED", "Impresora multifuncional"]
     precios = [199.99, 899.99, 129.49, 499.99, 249.00, 349.99, 199.99, 79.99, 599.99, 49.99]
-    proveedores = ["Tech Solutions", "Innovative Electronics", "Gadgets R Us", "Smart Home Supplies", "Digital World", "ElectroMart", "Future Gadgets", "Premium Devices", "Global Tech Supply", "NextGen Innovations"]
+    nombre_proveedores = ["Tech Solutions", "Innovative Electronics", "Gadgets R Us", "Smart Home Supplies", "Digital World", "ElectroMart", "Future Gadgets", "Premium Devices", "Global Tech Supply", "NextGen Innovations"]
 
     clientes = []
     productos = []
     compras = []
     proveedores = []
 
-    for i in range(0,10):
+    for i in range(10):
         clientes.append(Cliente(nombre = nombres[i], direccion_de_facturacion = getLocationPoint(addresses[i]), direccion_de_envio = getLocationPoint(addresses[i]), tarjeta_de_pago = numeros[i]))
-        productos.append(Producto(nombre = productos[i], codigo_del_producto = numeros[i], precio_con_iva = precios[i]))
+        productos.append(Producto(nombre = nombre_productos[i], codigo_del_producto = numeros[i], precio_con_iva = precios[i]))
         compras.append(Compra(cliente = nombres[i], precio_compra = precios[i], direccion_envio = getLocationPoint(addresses[i])))
-        proveedores.append(Proveedor(nombre = proveedores[i], direccion_almacenes = getLocationPoint(addresses[i])))
+        proveedores.append(Proveedor(nombre = nombre_proveedores[i], direccion_almacenes = getLocationPoint(addresses[i])))
+
+    for i in range(10):
+        clientes[i].save()
+        productos[i].save()
+        compras[i].save()
+        proveedores[i].save()
 
     #mongoexport --uri "mongodb://localhost:27017/mi_base_de_datos" --collection usuarios --out usuarios.json
 

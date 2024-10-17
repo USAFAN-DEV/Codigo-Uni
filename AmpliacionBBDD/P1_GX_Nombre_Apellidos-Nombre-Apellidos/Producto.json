@@ -1,0 +1,82 @@
+[    
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19a7"
+        },
+        "codigo_del_producto": 12345678,
+        "precio_con_iva": 199.99,
+        "nombre": "Laptop"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19ab"
+        },
+        "codigo_del_producto": 87654321,
+        "precio_con_iva": 899.99,
+        "nombre": "Smartphone"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19af"
+        },
+        "codigo_del_producto": 23456789,
+        "precio_con_iva": 129.49,
+        "nombre": "Auriculares Bluetooth"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b3"
+        },
+        "codigo_del_producto": 98765432,
+        "precio_con_iva": 499.99,
+        "nombre": "Televisor 4K"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b7"
+        },
+        "codigo_del_producto": 34567890,
+        "precio_con_iva": 249.0,
+        "nombre": "Reloj inteligente"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19bb"
+        },
+        "codigo_del_producto": 45678901,
+        "precio_con_iva": 349.99,
+        "nombre": "Cámara DSLR"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19bf"
+        },
+        "codigo_del_producto": 56789012,
+        "precio_con_iva": 199.99,
+        "nombre": "Tablet"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c3"
+        },
+        "codigo_del_producto": 67890123,
+        "precio_con_iva": 79.99,
+        "nombre": "Altavoz inteligente"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c7"
+        },
+        "codigo_del_producto": 78901234,
+        "precio_con_iva": 599.99,
+        "nombre": "Monitor LED"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19cb"
+        },
+        "codigo_del_producto": 89012345,
+        "precio_con_iva": 49.99,
+        "nombre": "Impresora multifuncional"
+    }
+]

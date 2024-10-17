@@ -1,0 +1,132 @@
+[    
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19a9"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -122.084614,
+                37.421764
+            ]
+        },
+        "nombre": "Tech Solutions"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19ad"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -122.030098,
+                37.33167
+            ]
+        },
+        "nombre": "Innovative Electronics"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b1"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -72.365995,
+                41.103357
+            ]
+        },
+        "nombre": "Gadgets R Us"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b5"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -73.992285,
+                40.737871
+            ]
+        },
+        "nombre": "Smart Home Supplies"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b9"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -74.001558,
+                40.751101
+            ]
+        },
+        "nombre": "Digital World"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19bd"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -87.636772,
+                41.883573
+            ]
+        },
+        "nombre": "ElectroMart"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c1"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -115.172719,
+                36.075632
+            ]
+        },
+        "nombre": "Future Gadgets"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c5"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -73.979556,
+                40.759123
+            ]
+        },
+        "nombre": "Premium Devices"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c9"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -75.160077,
+                39.951515
+            ]
+        },
+        "nombre": "Global Tech Supply"
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19cd"
+        },
+        "direccion_almacenes": {
+            "type": "Point",
+            "coordinates": [
+                -117.922371,
+                33.815668
+            ]
+        },
+        "nombre": "NextGen Innovations"
+    }
+]

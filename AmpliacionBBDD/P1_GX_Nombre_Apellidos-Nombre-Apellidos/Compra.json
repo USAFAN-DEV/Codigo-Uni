@@ -1,0 +1,142 @@
+[    
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19a8"
+        },
+        "cliente": "Nicolas",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -122.084614,
+                37.421764
+            ]
+        },
+        "precio_compra": 199.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19ac"
+        },
+        "cliente": "Alice",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -122.030098,
+                37.33167
+            ]
+        },
+        "precio_compra": 899.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b0"
+        },
+        "cliente": "Bob",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -72.365995,
+                41.103357
+            ]
+        },
+        "precio_compra": 129.49
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b4"
+        },
+        "cliente": "Sofia",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -73.992285,
+                40.737871
+            ]
+        },
+        "precio_compra": 499.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19b8"
+        },
+        "cliente": "Liam",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -74.001558,
+                40.751101
+            ]
+        },
+        "precio_compra": 249.0
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19bc"
+        },
+        "cliente": "Emma",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -87.636772,
+                41.883573
+            ]
+        },
+        "precio_compra": 349.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c0"
+        },
+        "cliente": "Oliver",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -115.172719,
+                36.075632
+            ]
+        },
+        "precio_compra": 199.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c4"
+        },
+        "cliente": "Mia",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -73.979556,
+                40.759123
+            ]
+        },
+        "precio_compra": 79.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19c8"
+        },
+        "cliente": "Ethan",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -75.160077,
+                39.951515
+            ]
+        },
+        "precio_compra": 599.99
+    },
+    {
+        "_id": {
+            "$oid": "6711275b63925cb92a8a19cc"
+        },
+        "cliente": "Ava",
+        "direccion_envio": {
+            "type": "Point",
+            "coordinates": [
+                -117.922371,
+                33.815668
+            ]
+        },
+        "precio_compra": 49.99
+    }
+]
