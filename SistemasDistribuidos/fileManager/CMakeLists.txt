@@ -19,7 +19,7 @@ target_link_libraries(server pthread  FileManager stdc++fs)
 
 
 project(client LANGUAGES CXX)
-add_executable(client utils.h utils.cpp client.cpp)
+add_executable(client utils.h utils.cpp main_fm.cpp)
 target_link_libraries(client pthread stdc++fs)
 
 
