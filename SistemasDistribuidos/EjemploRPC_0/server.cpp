@@ -15,7 +15,7 @@ int main(int argc, char** argv){
 
     while(1){
 
-        while(!CheckClient()) usleep(100); //Hasta que el cliente no se conecta, espera
+        while(!checkClient()) usleep(100); //Hasta que el cliente no se conecta, espera
         //La función usleep() en C/C++ se utiliza para suspender la ejecución del programa por un período de tiempo específico
 
         std::cout << "Cliente conectado\n";

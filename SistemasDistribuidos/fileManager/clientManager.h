@@ -1,26 +1,25 @@
 #pragma once
 #include "utils.h"
-#include "persona.h"
+#include "filemanager.h"
 using namespace std;
 typedef enum{
 
-	PersonaF,//constructor defecto
-	PersonaParamsF,//constructor parametros
-	PersonaDF,//destructor
-	setNombreF,
-	setEdadF,
-	getNombreF,
-	getEdadF,
+	FileManagerF,//constructor defecto
+	FileManagerParamsF,//constructor parametros
+	FileManagerDF,//destructor
+	listFilesF,
+	writeFilesF,
+	readFilesF,
 	
 	ackMSG
-}personaFuncs;
+}fileFuncs;
 
 class clientManager{
 
 		public:
 		
-			static inline map<int, Persona> clients;
-			static inline map<Persona*,connection_t > connectionIds;
+			static inline map<int, FileManager> clients;
+			static inline map<FileManager*,connection_t > connectionIds;
 			
 			
 			

@@ -4,7 +4,7 @@
 
 int main(int argc,char** argv)
 {
-	FileManager fm("FileManagerDir");
+	FileManager fm("hola");
 	string command;
 	string fileName;
 	string line;
