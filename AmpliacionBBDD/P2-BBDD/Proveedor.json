@@ -1,8 +1,5 @@
 [    
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19a9"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -13,9 +10,6 @@
         "nombre": "Tech Solutions"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19ad"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -26,9 +20,6 @@
         "nombre": "Innovative Electronics"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19b1"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -39,9 +30,6 @@
         "nombre": "Gadgets R Us"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19b5"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -52,9 +40,6 @@
         "nombre": "Smart Home Supplies"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19b9"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -65,9 +50,6 @@
         "nombre": "Digital World"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19bd"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -78,9 +60,6 @@
         "nombre": "ElectroMart"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19c1"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -91,9 +70,6 @@
         "nombre": "Future Gadgets"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19c5"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -104,9 +80,6 @@
         "nombre": "Premium Devices"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19c9"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [
@@ -117,9 +90,6 @@
         "nombre": "Global Tech Supply"
     },
     {
-        "_id": {
-            "$oid": "6711275b63925cb92a8a19cd"
-        },
         "direccion_almacenes": {
             "type": "Point",
             "coordinates": [

@@ -118,7 +118,7 @@ class Model:
             if not self.validate_vars(var):
                 
                 raise ValueError (f"ERROR. La variable '{var}' no corresponde con este modelo. Intente crear el objeto de nuevo.")
-            
+                
         self.__dict__.update(kwargs)  #Actualiza los valores de los atributos de la clase con los valores guardados en kwargs
 
     def validate_vars(self, var_name:str) -> bool:
@@ -133,7 +133,9 @@ class Model:
 
         if var_name not in self.admissible_vars and var_name not in self.required_vars:
 
-            return False
+            if var_name != '_id':
+
+                return False
 
         return True
 
@@ -271,6 +273,19 @@ class Model:
         cls.db = db_collection
         cls.required_vars = required_vars
         cls.admissible_vars = admissible_vars
+
+        for var in required_vars:
+            
+            if "direccion" in var:
+
+                cls.db.create_index([(var, "2dsphere")])
+
+        for var in admissible_vars:
+            
+            if "direccion" in var:
+
+                cls.db.create_index([(var, "2dsphere")])
+        
         
 
 class ModelCursor:
@@ -372,12 +387,12 @@ def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://local
     # que se ha declarado la clase en la linea anterior ya que se hace
     # en tiempo de ejecucion.
 
-    return globals()
+    return globals()  
  
 
 
 
-# TODO 
+# NO REALIZADO AQUI PORQUE ESTA HECHO EN EL NOTEBOOK 
 # PROYECTO 2
 # Almacenar los pipelines de las consultas en Q1, Q2, etc. 
 # EJEMPLO
@@ -398,40 +413,14 @@ Q3 = []
 
 
 if __name__ == '__main__':
-    
-    # Inicializar base de datos y modelos con initApp
+
     initApp()
 
-    # Creamos los modelos
-    addresses = ["1600 Amphitheatre Parkway, Mountain View, CA, USA", "1 Infinite Loop, Cupertino, CA, USA", "350 Fifth Avenue, New York, NY, USA", "5th Avenue, New York, NY, USA",
-    "350 10th Ave, New York, NY, USA", "101 N. Wacker Dr, Chicago, IL, USA", "6000 S Las Vegas Blvd, Las Vegas, NV, USA", "30 Rockefeller Plaza, New York, NY, USA",
-    "12 S 12th St, Philadelphia, PA, USA", "1 Disneyland Dr, Anaheim, CA, USA"]
-    nombres = ["Nicolas", "Alice", "Bob", "Sofia", "Liam", "Emma", "Oliver", "Mia", "Ethan", "Ava"]
-    numeros = [12345678, 87654321, 23456789, 98765432, 34567890, 45678901, 56789012, 67890123, 78901234, 89012345]
-    nombre_productos = ["Laptop", "Smartphone", "Auriculares Bluetooth", "Televisor 4K", "Reloj inteligente", "Cámara DSLR", "Tablet", "Altavoz inteligente", "Monitor LED", "Impresora multifuncional"]
-    precios = [199.99, 899.99, 129.49, 499.99, 249.00, 349.99, 199.99, 79.99, 599.99, 49.99]
-    nombre_proveedores = ["Modas paqui","Tech Solutions", "Innovative Electronics", "Gadgets R Us", "Smart Home Supplies", "Digital World", "ElectroMart", "Future Gadgets", "Premium Devices", "Global Tech Supply", "NextGen Innovations"]
-
-    clientes = []
-    productos = []
-    compras = []
-    proveedores = []
-
-    for i in range(10):
-        clientes.append(Cliente(nombre = nombres[i], direccion_de_facturacion = getLocationPoint(addresses[i]), direccion_de_envio = getLocationPoint(addresses[i]), tarjeta_de_pago = numeros[i]))
-        productos.append(Producto(nombre = nombre_productos[i], codigo_del_producto = numeros[i], precio_con_iva = precios[i]))
-        compras.append(Compra(cliente = nombres[i], precio_compra = precios[i], direccion_envio = getLocationPoint(addresses[i])))
-        proveedores.append(Proveedor(nombre = nombre_proveedores[i], direccion_almacenes = getLocationPoint(addresses[i])))
-
-    for i in range(10):
-        clientes[i].save()
-        productos[i].save()
-        compras[i].save()
-        proveedores[i].save()
-
-    #mongoexport --uri "mongodb://localhost:27017/mi_base_de_datos" --collection usuarios --out usuarios.json
-    #mongoimport --db myDatabase --collection myCollection --file data.json --jsonArray
-
+    #Para rellenar con datos la base de datos insertar los siguientes comandos en la Terminal
+    #mongoimport --db abd --collection Cliente --file Cliente.json --jsonArray
+    #mongoimport --db abd --collection Producto --file Producto.json --jsonArray
+    #mongoimport --db abd --collection Compra --file Compra.json --jsonArray
+    #mongoimport --db abd --collection Proveedor --file Proveedor.json --jsonArray
 
 
     # PROYECTO 2

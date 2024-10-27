@@ -1,0 +1,50 @@
+#YAML Configuration file for ODM
+#Cliente: Nombre, direcciones de facturación, direcciones de envío, tarjetas de pago, fecha de alta, fecha de último acceso.
+#Producto: Nombre, código del producto del proveedor, precio sin y con IVA, coste de envío, descuento por rango de fechas, dimensiones, peso, proveedores/almacenes, y otros atributos específicos del producto.
+#Compra: Productos, cliente, precio de compra, fecha de compra, dirección de envío.
+#Proveedor: Nombre, direcciones almacenes. 
+
+Model:
+
+  Cliente:
+    required_vars:
+      - nombre
+      - direccion_de_facturacion
+      - direccion_de_envio
+      - tarjeta_de_pago
+    admissible_vars:
+      - fecha_de_alta
+      - fecha_de_ultimo_acceso
+
+  Producto:
+    required_vars:
+      - nombre
+      - codigo_del_producto
+      - precio_con_iva
+    admissible_vars:
+      - precio_sin_iva
+      - descuento_rango_fechas
+      - dimensiones
+      - peso
+      - proveedores
+      - almacenes
+      - coste_envio
+      #otros atributos especificos?
+
+  Compra:
+    required_vars:
+      - cliente
+      - precio_compra
+      - direccion_envio
+    admissible_vars: 
+      - fecha_compra
+      - productos
+
+  Proveedor:
+    required_vars:
+      - nombre
+      - direccion_almacenes
+    admissible_vars: []
+
+settings:
+  enforce_required: true  # Si es true, se debe cumplir que los atributos obligatorios estén presentes en cada documento

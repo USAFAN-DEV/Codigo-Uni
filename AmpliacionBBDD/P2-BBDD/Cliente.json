@@ -1,0 +1,182 @@
+[    
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -122.084614,
+                37.421764
+            ]
+        },
+        "nombre": "Nicolas",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -122.084614,
+                37.421764
+            ]
+        },
+        "tarjeta_de_pago": 12345678
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -122.030098,
+                37.33167
+            ]
+        },
+        "nombre": "Alice",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -122.030098,
+                37.33167
+            ]
+        },
+        "tarjeta_de_pago": 87654321
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -72.365995,
+                41.103357
+            ]
+        },
+        "nombre": "Bob",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -72.365995,
+                41.103357
+            ]
+        },
+        "tarjeta_de_pago": 23456789
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -73.992285,
+                40.737871
+            ]
+        },
+        "nombre": "Sofia",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -73.992285,
+                40.737871
+            ]
+        },
+        "tarjeta_de_pago": 98765432
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -74.001558,
+                40.751101
+            ]
+        },
+        "nombre": "Liam",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -74.001558,
+                40.751101
+            ]
+        },
+        "tarjeta_de_pago": 34567890
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -87.636772,
+                41.883573
+            ]
+        },
+        "nombre": "Emma",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -87.636772,
+                41.883573
+            ]
+        },
+        "tarjeta_de_pago": 45678901
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -115.172719,
+                36.075632
+            ]
+        },
+        "nombre": "Oliver",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -115.172719,
+                36.075632
+            ]
+        },
+        "tarjeta_de_pago": 56789012
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -73.979556,
+                40.759123
+            ]
+        },
+        "nombre": "Mia",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -73.979556,
+                40.759123
+            ]
+        },
+        "tarjeta_de_pago": 67890123
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -75.160077,
+                39.951515
+            ]
+        },
+        "nombre": "Ethan",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -75.160077,
+                39.951515
+            ]
+        },
+        "tarjeta_de_pago": 78901234
+    },
+    {
+        "direccion_de_envio": {
+            "type": "Point",
+            "coordinates": [
+                -117.922371,
+                33.815668
+            ]
+        },
+        "nombre": "Ava",
+        "direccion_de_facturacion": {
+            "type": "Point",
+            "coordinates": [
+                -117.922371,
+                33.815668
+            ]
+        },
+        "tarjeta_de_pago": 89012345
+    }
+]
