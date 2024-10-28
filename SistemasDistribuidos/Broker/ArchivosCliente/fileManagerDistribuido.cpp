@@ -1,12 +1,53 @@
 #include "clientManager.h"
 #include "filemanager.h"
+#include "conexionManager.h"
 #include "utils.h"
 
 using namespace std;
 
+string FileManager::obtenerIpServer(string ipBroker){
+
+    string ipServer;
+
+    auto conn = initClient(ipBroker, 3001);
+    vector <unsigned char> buffer;
+
+    //empaquetamos y enviamos el mensaje para solicitar una ip
+    pack(buffer, (brokerFuncs)clienteConn);
+    sendMSG(conn.serverId, buffer);
+
+    buffer.clear();
+    recvMSG(conn.serverId, buffer);
+
+    //cerramos la conexion con el broker, ya hemos obtenido lo que queriamos. Revisar que no pete el programa
+    closeConnection(conn.serverId);
+
+    //comprobamos que la peticion ha sido atendida
+    auto ack = unpack<brokerFuncs>(buffer);
+
+    if(ack != ackMSG2){
+
+        cout << "ERROR:" << __FILE__ << ":" << __LINE__ << endl;
+        return "ERROR";
+
+    }
+    else{
+
+        //desempaquetamos la ip del servidor
+        ipServer.resize(unpack<int>(buffer));
+        unpackv(buffer, (char*)ipServer.data(), (int)ipServer.size());
+        return ipServer;
+
+    }
+
+}
+
 FileManager::FileManager(){
 
-    auto conn = initClient("127.0.0.1", 3001);
+    //obtenemos la ip del servidor
+    string ipServer = obtenerIpServer("98.82.195.21");
+
+    auto conn = initClient(ipServer, 3001);
     vector <unsigned char> buffer;
 
     pack(buffer, (fileFuncs)FileManagerF);
@@ -31,7 +72,10 @@ FileManager::FileManager(){
 
 FileManager::FileManager(string path){
 
-    auto conn = initClient("127.0.0.1", 3001);
+    //obtenemos la ip del servidor
+    string ipServer = obtenerIpServer("98.82.195.21");
+
+    auto conn = initClient(ipServer, 3001);
     vector <unsigned char> buffer;
 
     //empaquetamos ack
