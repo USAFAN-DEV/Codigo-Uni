@@ -3,7 +3,7 @@ import Imagen from '../../common/Imagen.jsx'
 import {getApiRequest} from '../../../api/apikey.js'
 import { useState, useEffect } from 'react'
 
-const queryRecentComics = "/v1/public/comics?orderBy=-onsaleDate&limit=12&dateDescriptor=thisMonth&";
+const queryRecentComics = "/v1/public/comics?orderBy=-modified&limit=16&dateDescriptor=thisMonth&";
 
 const RecentComics = () => {
 
@@ -17,20 +17,28 @@ const RecentComics = () => {
         .then(result =>{return result.data.results;})
         .then(comics => {
 
+            //console.log(comics);
+
             const nuevoDiccionarioComics = {};
 
             comics.forEach(comic => {
 
                 if(comic.thumbnail.path && comic.title){
 
-                    nuevoDiccionarioComics[comic.title] = `${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`;
+                    console.log(comic.thumbnail.path);
+
+                    if(comic.thumbnail.path != "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"){
+
+                        nuevoDiccionarioComics[comic.title] = `${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`;
+
+                    }
 
                 }
                 
             });
     
             setDiccionarioComics(nuevoDiccionarioComics);
-            console.log(nuevoDiccionarioComics);
+            //console.log(nuevoDiccionarioComics);
     
         });
 

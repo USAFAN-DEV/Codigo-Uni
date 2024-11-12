@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 #recent-comics-titulo-container{
 
-    border: 1px solid black;
-
-    height: 5vh;
+    height: 10vh;
     width: 100%;
+
+    margin-bottom: 5vh;
 
 }
 
@@ -20,24 +22,24 @@
 
 .titulo-container>h1{
 
-    color: black;
+    color: #2B2D42;
+    font-family: 'Sour Gummy', sans-serif;
+    font-size: 3rem;
 
 }
 
 #recent-comics-data-container{
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(4, 1fr); 
     gap: 2vw; 
 
-    width: 100%;
-    height: auto;
+    width: 80%;
+    margin-left:10%;
     
 }
 
 .recent-comics-comic-container{
-
-    border:1px solid black;
 
     display:flex;
     justify-content: center;
@@ -46,24 +48,40 @@
 
 }
 
-.recent-comics-comic-imagen-container{
+.recent-comics-comic-imagen-container {
 
-    border:1px solid black;
+    height: 40vh; 
+    width: auto; 
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 
-    height: auto;
-    width: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.recent-comics-comic-imagen-container:hover {
+
+    transform: scale(1.05); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+
+}
+
+.recent-comics-comic-imagen-container > img{
+
+    height: 100%;
 
 }
 
 .recent-comics-comic-titulo-container{
 
-    border:1px solid black;
+    margin-top: 2vh;
 
 }
 
 .recent-comics-comic-titulo-container > h1{
 
-    font-size: small;
+    font-size: medium;
+    color: #2B2D42;
 
 }
 
