@@ -1,0 +1,16 @@
+*{
+  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Input Sans', sans-serif;
+
+}
+
+body{
+
+  height: 99vh;
+  width: 99vw;
+  background-color: #E6FAFC;
+
+}

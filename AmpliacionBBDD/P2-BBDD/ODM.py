@@ -334,7 +334,9 @@ class ModelCursor:
 
             doc = next(self.cursor)
             yield self.model(**doc)
-
+        
+        """Al usar **doc, el diccionario se desempaqueta en pares de clave-valor que coinciden con los argumentos que espera el constructor del modelo. """
+        
 
 
 def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://localhost:27017/", db_name="abd") -> None:

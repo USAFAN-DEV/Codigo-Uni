@@ -23,4 +23,7 @@ int main(int argc, char** argv){
 
     }
 
+    close(serverSocketID);
+    return 0;
+
 }

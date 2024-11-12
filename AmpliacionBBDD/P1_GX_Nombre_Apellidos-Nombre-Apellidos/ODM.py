@@ -319,6 +319,9 @@ class ModelCursor:
 
             doc = next(self.cursor)
             yield self.model(**doc)
+            
+        #Al usar **doc, el diccionario se desempaqueta en pares de clave-valor que coinciden con los argumentos que espera el constructor del modelo. 
+ 
 
 
 
@@ -398,6 +401,8 @@ Q3 = []
 
 
 if __name__ == '__main__':
+
+    #delete
     
     # Inicializar base de datos y modelos con initApp
     initApp()

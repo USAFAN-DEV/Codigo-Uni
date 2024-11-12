@@ -1,0 +1,56 @@
+#barra-busqueda{
+
+    height: 100%;
+    width: 33%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#barra-busqueda>input{
+
+    height: 50%;
+    width: 50%;
+
+}
+
+.boton-container{
+
+    height: 55%;
+    width: auto;
+
+}
+
+.boton-container>button{
+
+    appearance: none; /* Quita el estilo default*/
+    height: 100%;
+    width: auto;
+
+    background-color: transparent;
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    border-radius: 24px;
+    border-style: none;
+
+}
+
+.icon-container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width:auto;
+
+}
+
+.icon-container>img{
+
+    height:100%;
+    width:auto;
+
+}
+

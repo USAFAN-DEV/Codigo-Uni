@@ -1,0 +1,44 @@
+/mi-proyecto
+│
+├── /public           # Archivos estáticos como index.html, favicon, etc.
+│
+├── /src              # Código fuente de la aplicación
+│   ├── /assets       # Recursos como imágenes, videos, fuentes
+│   ├── /components   # Componentes reutilizables
+│   ├── /pages        # Páginas de la aplicación
+│   ├── /hooks        # Custom hooks de React
+│   ├── /context      # Context API (si usas contexto)
+│   ├── /utils        # Funciones utilitarias o helpers
+│   ├── /styles       # Archivos CSS o estilos
+│   ├── /api          # Funciones para interactuar con APIs
+│   ├── App.jsx       # Componente principal de la aplicación
+│   ├── main.jsx      # Punto de entrada de la aplicación
+│   └── index.js      # Archivo de configuración y arranque
+│
+├── .env              # Variables de entorno
+├── package.json      # Dependencias y scripts del proyecto
+├── vite.config.js    # Configuración de Vite
+└── README.md         # Documentación del proyecto
+
+
+/components
+│
+├── /common           # Componentes reutilizables (botones, tarjetas, etc.)
+│   ├── Button.jsx
+│   ├── Card.jsx
+│   └── Loader.jsx
+│
+├── /layout           # Componentes relacionados con el diseño (header, footer, etc.)
+│   ├── Header.jsx
+│   ├── Footer.jsx
+│   └── Sidebar.jsx
+│
+├── /comic            # Componentes específicos para cómics
+│   ├── ComicCard.jsx
+│   ├── ComicDetail.jsx
+│   └── ComicGallery.jsx
+│
+└── /favorites        # Componentes relacionados con la gestión de favoritos
+    ├── FavoritesList.jsx
+    └── FavoriteCard.jsx
+
