@@ -1,10 +1,10 @@
 
-const Imagen = ({src, alt, classNameContainer}) => {
+const Imagen = ({src, alt, classNameContainer, onClick = () => {}}) => {
 
     return(
 
         <div className={classNameContainer}>
-            <img src={src} alt={alt}/>
+            <img onClick={()=>onClick(src)} src={src} alt={alt}/>
         </div>
 
     )

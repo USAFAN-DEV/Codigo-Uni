@@ -57,7 +57,7 @@ nav{
 }
 
 .item-menu-texto-container{
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,5 +91,35 @@ nav{
 
     height: 30%;
     width: auto; 
+
+}
+
+@media (max-width: 700px) {
+
+    .logo-container{
+
+        width: 22%;
+    }
+
+    #menu-container{
+
+        width: 44%;
+    }
+
+    .item-menu-texto-container>h1{
+
+        font-size: small;
+    
+    }
+    
+}
+
+@media (max-width: 450px){
+
+    .item-menu-texto-container>h1{
+
+        font-size: x-small;
+    
+    }
 
 }

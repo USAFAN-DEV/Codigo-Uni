@@ -194,7 +194,8 @@ class Model:
         if self.db is None:
             raise ValueError("ERROR: No hay conexión a la base de datos.")
         
-        self.db.drop()
+        if "_id" in self.__dict__:
+            self.db.delete_one({"_id":self.__dict__["_id"]})
     
     @classmethod
     def find(cls, filter: dict[str, str | dict]) -> Any:
@@ -391,29 +392,6 @@ def initApp(definitions_path: str = "./models.yml", mongodb_uri="mongodb://local
 
     return globals()  
  
-
-
-
-# NO REALIZADO AQUI PORQUE ESTA HECHO EN EL NOTEBOOK 
-# PROYECTO 2
-# Almacenar los pipelines de las consultas en Q1, Q2, etc. 
-# EJEMPLO
-# Q0: Listado de todas las personas con nombre determinado
-nombre = "Quijote"
-Q0 = [{'$match': {'nombre': nombre}}]
-
-# Q1: 
-Q2 = []
-
-# Q2: 
-Q2 = []
-
-# Q3:
-Q3 = []
-
-# Q4: etc.
-
-
 if __name__ == '__main__':
 
     initApp()
@@ -424,12 +402,6 @@ if __name__ == '__main__':
     #mongoimport --db abd --collection Compra --file Compra.json --jsonArray
     #mongoimport --db abd --collection Proveedor --file Proveedor.json --jsonArray
 
-
-    # PROYECTO 2
-    # Ejecutar consultas Q1, Q2, etc. y mostrarlo
-    #TODO
-    #Ejemplo
-    #Q1_r = MiModelo.aggregate(Q1)
 
 
 

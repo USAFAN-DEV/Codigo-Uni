@@ -1,24 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
 #comic-container{
 
-    width: 20%;
-    height: 30%;
+    width: 40vw;
+    height: 80vh;
+    position: fixed;
+    top: 10%;
+    left: 30%;
+
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+    border-radius: 1%;
+
+}
+
+#comic-container::backdrop{
+
+    background-color: #2B2D42;
+
+}
+
+#comic-container::-webkit-scrollbar {
+
+    width: 1.5vh;   
+
+}
+
+#comic-container::-webkit-scrollbar-track {
+
+    background: transparent;     
+
+}
+
+#comic-container::-webkit-scrollbar-thumb {
+        
+    background-color: #2B2D42;   
+    border-radius: 2em;     
+    border: 0.15em solid white;
+
+}
+
+.background2{
+
+    border-radius: 1%;
+
+    position: fixed;
+    margin-left: -1vw;
+    margin-right: -1vw;
+
+    background-image: url(../../../assets/background.jpg);
+    background-repeat: repeat;
+    background-size: 50%;
+    background-position: top left;
+
+    height: 80vh;
+    width: 40vw;
+    opacity: 0.1;
+
+    z-index: -1;
+
+}
+
+.boton-cerrar-container{
+
+    cursor: pointer;
+    position: fixed;
+
+    top: 12%;
+    right: 30%;
+    width: 3%;
+    height: 3%;
 
     display: flex;
     justify-content: center;
+    align-items: center;
+
+}
+.boton-cerrar-container > img{
+
+    height: 90%;
+    width: auto;
+
+}
+
+#comic-info{
+
+    width: 100%;
+    height: auto;
+
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.foto-comic-info{
+
+    padding: 5%;
+
+    width: 40%;
+    height: 45vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.foto-comic-info > img{
+
+    height: 100%;
+    width: auto;
+    border-radius: 5%;
+
+}
+
+#comic-text{
+
+    padding: 5%;
+
+    width: 60%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.titulo-comic-text > h1{
+
+    color: #2B2D42;
+    font-family: 'Sour Gummy', sans-serif;
+    font-size: 1.5rem;
+
+    margin-bottom: 10%;
+
+}
+
+.descripcion-comic-text > h1{
+
+    font-size: 1rem;
+
+}
+
+#personajes-container{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2vw; 
+
+    width: 96%;
+    margin-left: 1vw;
+
+}
+
+.titulo-personajes-container{
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 5%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+
+}
+
+.titulo-personajes-container>h1{
+
+    color: #2B2D42;
+    font-family: 'Sour Gummy', sans-serif;
+    font-size: 2rem;
+
+}
+
+.personaje-container{
+
+    display:flex;
     align-items: center;
     flex-direction: column;
 
 }
 
-.foto-comic-container{
+.imagen-personaje-container{
 
-    width: 70%;
-    height: 70%;
+    height: 80%; 
+    width: auto; 
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+
+    position: relative;
+    z-index: 1;
+}
+
+.imagen-personaje-container:hover {
+
+    transform: scale(1.05); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    cursor: pointer;
 
 }
 
-.titulo-comic-container{
+.imagen-personaje-container > img{
 
-    color:black;
+    height: 100%;
 
 }
+
+.nombre-personaje-container{
+
+    margin-top: 2vh;
+
+}
+
+.nombre-personaje-container > h1{
+
+    font-size: medium;
+    color: #2B2D42;
+
+}
+
+@media (max-width: 1550px){
+
+    #comic-info{
+        
+        flex-direction: column;
+    
+    }
+    
+    .foto-comic-info{
+    
+        width: 100%;
+    
+    }
+    
+    .foto-comic-info > img{
+    
+        height: 45vh;
+    
+    }
+    
+    #comic-text{
+    
+        width: 100%;
+
+    }
+
+    #personajes-container{
+
+        grid-template-columns: repeat(2, 1fr); 
+    
+    }
+
+}
+
+@media (max-width: 1000px){
+
+    #comic-container{
+
+        width: 50vw;
+    
+    }
+
+    .boton-cerrar-container{
+
+        right: 22%;
+    
+    }
+
+    .foto-comic-info > img{
+    
+        height: 35vh;
+    
+    }
+
+    .titulo-comic-text > h1{
+
+        font-size: 1.2rem;
+    
+    }
+
+    .descripcion-comic-text > h1{
+
+        font-size: 0.75rem;
+    
+    }
+
+    .personaje-container{
+
+        height: 90%;
+
+    }
+    
+    .background2{
+
+        width: 50vw;
+
+    }
+
+}
+
+@media (max-width: 750px){
+
+    .foto-comic-info{
+
+        height: 38vh;
+    
+    }
+
+    .foto-comic-info > img{
+    
+        height: 30vh;
+    
+    }
+
+    .titulo-comic-text > h1{
+
+        font-size: 1rem;
+    
+    }
+
+    .descripcion-comic-text > h1{
+
+        font-size: 0.8rem;
+    
+    }
+
+    #personajes-container{
+
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 0;
+    
+    }
+
+    .personaje-container{
+
+        height: 70%;    
+
+    }
+
+    .titulo-personajes-container>h1{
+
+        font-size: 1.5rem;
+    
+    }
+
+}
+
+@media (max-width: 450px){
+
+    #comic-container{
+
+        width: 80vw;
+        margin-left: 0;
+        left: 10%;
+    
+    }
+
+    .background2{
+
+        width: 80vw;
+
+    }
+
+    .foto-comic-info{
+
+        height: 30vh;
+    
+    }
+
+    .foto-comic-info > img{
+    
+        height: 25vh;
+    
+    }
+
+    .titulo-comic-text > h1{
+
+        font-size: 0.8rem;
+    
+    }
+
+    .descripcion-comic-text > h1{
+
+        font-size: 0.6rem;
+    
+    }
+
+}
+
+
+

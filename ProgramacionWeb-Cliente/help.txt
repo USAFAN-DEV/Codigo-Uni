@@ -42,3 +42,17 @@
     ├── FavoritesList.jsx
     └── FavoriteCard.jsx
 
+
+
+
+{comicsFavoritos.length === 0 ? (
+                    <p>No tienes cómics favoritos.</p>
+                ) : (
+                    <ul>
+                        {comicsFavoritos.map((tituloComic) => (
+                            <li key={tituloComic}>
+                                <Texto contenido={tituloComic} classNameContainer="titulo-comic-list-favorite-comics" applyUsableText={false} />
+                            </li>
+                        ))}
+                    </ul>
+                )}

@@ -12,18 +12,20 @@ const getUsableText = (text) => {
 }
 
 
-const Texto = ({contenido, classNameContainer}) => {
+const Texto = ({contenido, classNameContainer, applyUsableText = true}) => {
 
-    return(
+    const newContenido = applyUsableText ? getUsableText(contenido) : contenido;
+
+    return (
 
         <div className={classNameContainer}>
 
-            <h1>{getUsableText(contenido)}</h1>
-            
+            <h1>{newContenido}</h1>
+
         </div>
 
     )
-
+     
 }
 
 export default Texto;
